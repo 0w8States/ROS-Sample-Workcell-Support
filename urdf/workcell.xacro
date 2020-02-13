@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <robot name="myworkcell" xmlns:xacro="http://ros.org/wiki/xacro">
-    <link name="world"/>
+    <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+    <xacro:ur5_robot prefix="" joint_limited="true"/>
 
+    <link name="world"/>
     <link name="table">
       <visual>
         <geometry>
@@ -14,6 +16,12 @@
         </geometry>
       </collision>
     </link>
+
+    <joint name="table_to_robot" type="fixed">
+  	<parent link="table"/>
+ 	<child link="base_link"/>
+  	<origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
 
     <link name="camera_frame"/>
 
